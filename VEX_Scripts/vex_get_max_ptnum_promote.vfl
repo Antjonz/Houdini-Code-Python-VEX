@@ -1,0 +1,16 @@
+// Get Max Point Number and Promote to Detail
+// Gets the maximum point number and stores it as a detail attribute
+//
+// SETUP IN HOUDINI:
+// 1. Add an Attribute Wrangle node with this code
+// 2. Add an Attribute Promote node after it
+// 3. In Attribute Promote:
+//    - Original Name: id
+//    - Original Class: Point
+//    - New Class: Detail
+//    - Promotion Method: Maximum
+//    - New Name: maxid
+//
+// This stores the max point number in i@maxid (detail attribute)
+
+@id = @ptnum;

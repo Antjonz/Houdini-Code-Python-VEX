@@ -1,0 +1,21 @@
+RANDOM GEO TO RANDOM POINT - ALTERNATIVE METHOD
+================================================
+
+This is an alternative to the Switch method for assigning random geometry to points.
+
+METHOD 1: Using Attribute Adjust Integer
+-----------------------------------------
+1. Add an Attribute Adjust Integer node
+   - Attribute Name: name
+   - Operation: Set Initial
+   - Pattern Type: Random
+   - Max Value: [number of different geometries you have]
+
+METHOD 2: Using Attribute Create
+---------------------------------
+1. Add an Attribute Create node
+   - Name: name
+   - Value: 0 1 2 3... (one number for each geometry variant)
+
+This creates an integer attribute that can be used to select which geometry
+to instance/copy to each point.

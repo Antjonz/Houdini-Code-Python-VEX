@@ -1,0 +1,5 @@
+// Number of Branches Expression
+// Expression used in for-each loop to determine random number of branches
+// Uses fit01 to map random value to min/max range based on point ID
+
+fit01(rand(point(-1, 0, "id", 0)),ch("branch_min"),ch("branch_max"))

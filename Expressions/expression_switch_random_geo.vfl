@@ -1,0 +1,16 @@
+// Random Geo to Random Point - Switch Method
+// Selects random geometry input based on foreach iteration
+//
+// SETUP IN HOUDINI:
+// 1. Create a For-Each loop with Copy to Points
+// 2. Connect second output of Copy to Points
+// 3. Add a Switch node
+// 4. Connect first output of Copy to Points to Switch input 0
+// 5. In Switch node "Select Input" parameter, use this expression:
+//    point(-1,0,"index",0)
+// 6. Add spare input in Switch node
+// 7. In spare input parameter, type: ../foreach_begin1
+//
+// This randomly selects which geometry to copy based on the index attribute
+
+point(-1,0,"index",0)

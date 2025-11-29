@@ -1,0 +1,5 @@
+// Set Part Name Attribute
+// Creates a string attribute for sim pieces to identify them by name
+// Reads from a channel parameter
+
+s@part_name = chs("part_name");

@@ -1,0 +1,6 @@
+// Extract Scale from Packed Primitives
+// Extracts the scale component from a packed primitive's transform matrix
+// Uses cracktransform to decompose the matrix
+
+matrix m = primintrinsic(0, "packedfulltransform", @ptnum);
+v@scale = cracktransform(0, 0, 2, {0,0,0}, m);

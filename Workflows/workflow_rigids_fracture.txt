@@ -1,0 +1,87 @@
+RIGIDS 1.V2 - FRACTURE WORKFLOW
+=================================
+
+KEYBOARD SHORTCUTS:
+-------------------
+Ctrl+B = Full screen viewport
+Ctrl+* = Show spaces in word wrap
+
+FRACTURE GEOMETRY:
+------------------
+1. Enter geometry node
+2. Assemble node to pack pieces:
+   - Turn ON: Pack
+   - Turn OFF: Create Name Attribute (Voronoi will make names)
+
+3. VDB from Polygons
+   - Use "Fog" mode (NOT distance)
+   - Alternative: Use Iso Offset SOP
+
+4. Scatter points inside volume
+   - These become fracture centers
+
+5. Voronoi Fracture
+   - Uses scattered points to break geometry
+
+CREATE CONSTRAINTS:
+-------------------
+1. After Assemble, add an Add node
+2. Delete the geometry (we only need constraints)
+3. Connect Adjacent Pieces node:
+   - Set Max Connections
+   - Set Search Radius
+
+4. Attribute Create node:
+   - Class: Primitive
+   - Name: constraint_name
+   - Type: String
+   - String Value: "Glue"
+
+5. Connect to DOP network second input
+
+CREATE SIMULATION:
+------------------
+DOP Network setup:
+
+1. RBD Packed Object
+   - Source: First context geometry
+
+2. Constraint Network
+   - Glue Constraint
+   - Break at Hard Limit
+   - Use -1 = never break
+
+3. Rigid Body Solver
+
+4. Gravity force
+
+5. Merge (set to Mutual)
+
+6. Ground Plane
+
+RBD FRACTURE NODE (Alternative):
+---------------------------------
+Modern Houdini RBD tools:
+
+1. RBD Fracture node:
+   - Edge Detail
+   - Add Fractures
+   - Fracture Ratio: 1=all, 0=none
+   - Enable Chipping for corner pieces
+
+2. RBD Exploded View (for visualization)
+
+3. RBD Configure
+
+4. RBD Pack/Unpack:
+   - Use for Transform or Copy to Points
+   - Add random attribute to randomize normals
+   - At unpack: Force Unique Name attribute
+
+5. RBD Bullet Solver
+
+TIPS:
+-----
+- Use lower fracture ratio for hero pieces
+- Chipping adds detail to edges
+- Exploded view helps visualize packed pieces

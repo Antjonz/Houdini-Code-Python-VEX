@@ -1,0 +1,5 @@
+// Get BBox (Expression)
+// Expression to get the maximum Y value of a bounding box from relative path
+// Use in parameter fields, not in wrangle nodes
+
+bbox("../", D_YMAX)

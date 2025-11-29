@@ -1,0 +1,21 @@
+RANDOM ROTATION - NODE METHOD (Alternative to VEX)
+===================================================
+
+Instead of using VEX code, you can use nodes to create random rotations:
+
+SETUP:
+------
+1. Add an Attribute Randomize node
+2. Configure it:
+   - Name: orient
+   - Distribution: Inside Sphere
+   - Dimensions: 4
+
+This creates random quaternion orientations for instancing.
+
+RANDOM PSCALE:
+--------------
+For random scale, use Attribute Randomize:
+   - Name: pscale
+   - Distribution: (choose your preferred distribution)
+   - Adjust min/max values as needed

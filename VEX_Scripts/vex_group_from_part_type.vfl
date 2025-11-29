@@ -1,0 +1,8 @@
+// Make Groups from Attributes and Assign Part Type
+// Splits part name to extract type
+// Creates a group for specific parts (concrete bricks in this example)
+
+s@part_type = split(s@part_name, "_")[0];
+if (s@part_name == "concrete_bricks"){
+    i@group_concrete_bricks = 1;
+}

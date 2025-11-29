@@ -1,0 +1,5 @@
+// Remove Points Below Red Threshold
+// Removes points where the red channel of the color attribute is below threshold
+// Useful for culling geometry based on painted color values
+
+if (@Cd.r < chf("threshold")) removepoint(0, @ptnum);

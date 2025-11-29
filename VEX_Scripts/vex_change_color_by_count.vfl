@@ -1,0 +1,5 @@
+// Change Color When Too Many Points
+// Sets the red channel to 0 when total number of points exceeds threshold
+// Can be used to prevent overcrowding in scatter operations
+
+if(npoints(0) > chf("threshold2")) @Cd.r = 0;

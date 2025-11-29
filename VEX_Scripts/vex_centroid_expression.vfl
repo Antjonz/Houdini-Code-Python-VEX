@@ -1,0 +1,5 @@
+// Centroid for Moving Pieces to Origin (Expression)
+// Expression to calculate centroid in XYZ
+// Used for moving geometry pieces to the origin
+
+centroid(0, D_XYZ)

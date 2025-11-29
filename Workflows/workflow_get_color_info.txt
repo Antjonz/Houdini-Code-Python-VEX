@@ -1,0 +1,31 @@
+GET COLOR INFO FROM OTHER GEOMETRY
+====================================
+
+Two methods to transfer or extract color information:
+
+METHOD 1: Attribute Transfer
+-----------------------------
+Use the Attribute Transfer node to copy color (Cd) attribute
+from one geometry to another based on proximity.
+
+Setup:
+- Input 0: Geometry to receive color
+- Input 1: Geometry with color information
+- Enable "Point Attributes"
+- Add "Cd" to the attributes list
+
+METHOD 2: Attribute from Map
+-----------------------------
+Use Attribute from Map node to sample color from a texture/image.
+
+Setup:
+- Specify texture file path
+- Set attribute name to "Cd"
+- Configure UV attribute if needed
+- Adjust sampling options
+
+USE CASES:
+----------
+- Transfer painted colors from one mesh to another
+- Sample texture colors onto points
+- Create color variations from source geometry

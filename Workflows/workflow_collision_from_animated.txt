@@ -1,0 +1,33 @@
+CREATE COLLISION GEO FROM ANIMATED FILE
+=========================================
+
+Creates optimized collision geometry from heavy animated geometry.
+
+NODE SETUP:
+-----------
+1. Merge (bring in your animated geometry)
+2. Unpack
+3. TimeShift
+   - Enable "Delete Channels"
+   - Set to frame you want to use as base
+4. VDB from Polygons
+5. Convert VDB to Polygons
+6. Clip (optional - reduce geometry)
+7. Remesh (create uniform low-res mesh)
+8. Point Deform
+   - Input 1: Remesh output
+   - Input 2: TimeShift output
+   - Input 3: Unpack output
+9. OUT
+
+WHAT THIS DOES:
+---------------
+- Takes one frame of animation (TimeShift)
+- Simplifies it to low-res mesh (VDB > Convert > Remesh)
+- Uses Point Deform to transfer original animation to simplified mesh
+- Result: Low-poly collision geo that follows original animation
+
+BENEFIT:
+--------
+Much faster simulation with lighter collision geometry while maintaining
+the same animated motion.

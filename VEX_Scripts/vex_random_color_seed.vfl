@@ -1,0 +1,12 @@
+// Assign Random Color from Ramp - Seed Attribute
+// Creates a seed attribute with random values for use with color ramps
+//
+// SETUP IN HOUDINI:
+// 1. Add this code in an Attribute Wrangle node
+// 2. Add a Color node after the wrangle
+// 3. In Color node, set "Class" to "Point"
+// 4. Set "Color Type" to "Ramp from Attribute"
+// 5. Set "Attribute" to "seed"
+// 6. Adjust the color ramp to your liking
+
+@seed = rand(@ptnum);

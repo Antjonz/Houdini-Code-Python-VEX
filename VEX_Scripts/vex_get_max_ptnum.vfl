@@ -1,0 +1,5 @@
+// Get Max Point Number (Part 1)
+// Assigns point number to id attribute
+// First step in getting the maximum point number in geometry
+
+@id = @ptnum;

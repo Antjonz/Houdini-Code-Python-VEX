@@ -1,0 +1,8 @@
+// Remove Points with Zero Pscale
+// Removes points where the pscale attribute equals zero
+// Useful for cleaning up particles or geometry that should no longer be visible
+
+if (@pscale == 0)
+{
+    removepoint(0, @ptnum);
+}

@@ -1,0 +1,50 @@
+ULTIMATE FX LIGHTNING WORKFLOW
+===============================
+
+BASIC LIGHTNING SETUP:
+----------------------
+1. Create base line geometry
+2. Add AAFlowNoise node
+   - Creates static noise along the line for lightning branch shape
+
+3. Map pscale using curveu:
+   - Resample with curveu enabled
+   - Use ramp parameter to control thickness along curve
+
+4. Add Mountain SOP for animation:
+   - Animate offset to create jitter/movement
+   - Keyframe tips:
+     * Shift+Click parameter = open animation window
+     * Alt+Click = set keyframe
+     * Middle mouse drag = move keyframe in timeline
+
+SPREAD LIGHTNING LINES:
+-----------------------
+Use Point VOP:
+1. Normalize position (P)
+2. Add constant value of 1 to Y component
+3. Use Mix node to blend between original and modified position
+
+LIGHTNING GEOMETRY:
+-------------------
+1. PolyWire node:
+   - Set subdivisions to 4
+   - Enable color
+   - Set color values higher than 1 for bloom/glow effect
+
+ADD NOISE TO PSCALE:
+--------------------
+1. Add Turbulent Noise
+2. Fit Range to desired scale values
+3. Visualize in Cd (color) first to check
+4. Bind export to pscale attribute
+
+FADE LIGHTNING AWAY:
+--------------------
+Use the noise setup above but bind to pscale to make
+lightning fade in/out procedurally
+
+RESULT:
+-------
+Procedural animated lightning with controllable branching,
+thickness variation, and fade effects.

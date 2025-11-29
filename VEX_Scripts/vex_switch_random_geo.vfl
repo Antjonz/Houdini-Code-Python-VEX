@@ -1,0 +1,5 @@
+// Switch Input for Random Geo (Expression)
+// Expression for switch node to select random geometry input
+// Based on index attribute from foreach loop
+
+point(-1,0,"index",0)

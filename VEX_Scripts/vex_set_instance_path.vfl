@@ -1,0 +1,5 @@
+// Set Instance Path
+// Sets the instance path attribute to point to a specific node
+// Used for instancing geometry onto points
+
+s@instancepath = "op:" + "/obj/Light_House/transform16";

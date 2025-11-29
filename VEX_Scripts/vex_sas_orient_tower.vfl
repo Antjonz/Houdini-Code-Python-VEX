@@ -1,0 +1,8 @@
+// SAS Orient Fix for Tower (Cylindrical Orientation)
+// Fixes orientation for instances arranged in a circular tower pattern
+// Calculates normals perpendicular to radial direction
+
+vector p_no_y = set(@P.x,0,@P.z);
+vector t = normalize(p_no_y);
+v@N = cross({0,-1,0},t);
+v@up = set(0,1,0);

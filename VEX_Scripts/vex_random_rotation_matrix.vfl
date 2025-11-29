@@ -1,0 +1,11 @@
+// Random Rotation with Matrix
+// Applies random rotation to normal vectors using a rotation matrix
+// Creates varied orientations for instances
+
+v@N = {0,-1,1};
+float rand = @ptnum;
+float rand_rot = rand(@ptnum) * 20.0;
+vector axis = {1, 1, 1};
+matrix3 rot = ident();
+rotate(rot, rand_rot, axis);
+@N *= rot;

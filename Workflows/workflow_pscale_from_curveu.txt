@@ -1,0 +1,25 @@
+PSCALE BASED ON CURVE U PARAMETER
+===================================
+
+Creates variable point scale along curves using curveu attribute.
+
+SETUP:
+------
+1. Add a Resample node
+   - Enable "Curve U Attribute"
+
+2. Add a Point VOP node with these nodes inside:
+   - Bind (import): curveu
+   - Ramp Parameter: set to "Spline Ramp" type
+   - Connect curveu to ramp input
+   - Bind Export: pscale
+   - Connect ramp output to pscale
+
+3. Adjust the ramp in the Point VOP parameters to control
+   how scale changes along the curve
+
+RESULT:
+-------
+Points at the start of curves (curveu=0) will have scale based on
+the ramp's left side, points at the end (curveu=1) will use the
+ramp's right side.

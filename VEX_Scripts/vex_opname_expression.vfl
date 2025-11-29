@@ -1,0 +1,5 @@
+// Opname Expression for Object Merge
+// Expression to get the parent node's name
+// Used in object merge paths for dynamic referencing
+
+`opname("..")`

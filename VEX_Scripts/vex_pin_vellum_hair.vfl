@@ -1,0 +1,5 @@
+// Pin Vellum Hairs Based on Curve U
+// Pins the start of vellum hair curves
+// Checks if curveu equals 0 (the beginning of the curve)
+
+if(@curveu == 0) i@group_pin = 1;

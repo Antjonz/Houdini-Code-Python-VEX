@@ -1,0 +1,250 @@
+Ultimate FX lightning
+Aaflownoise static noise on line
+Pscale/curveu map to ramp par
+Add mountain anim to points for jitter
+Shift click       keyframed par to see anim window
+Alt click = set keyframe
+Middle drag = move keyframe
+To spread lines:
+Pointvop
+Normalize p
+Add 1 to y consant
+Mix node
+Ligchtning geo = poly wire 4 subs color higher than 1
+Add noise to pscale:
+Turbulent noise
+Fit range
+Vis in Cd
+Bind export
+Use noise to fade lightning away:
+Bind to pscale
+Remove pscale 0 points:
+if (@pscale == 0)
+removepoint(0, @ptnum);
+N      umber       of branche      s expression in for each loop for id
+fit01(rand(point(-1, 0, "id", 0)),ch("branch_min"),ch("branch_max"))
+Rigids                 2              .v2
+Pack sim pieces cube = floor = pack
+Wrangle for one sim piece:              s@part_name = chs("part_name");
+Make goups out of attributes              and assign part type              :
+s@part_type = split(s@part_name, "_")[0];
+if (s@part_name == "concrete_bricks")\
+i@group_concrete_bricks = 1;
+Make subnetwork for fractures
+Make geo (concrete bricks)
+Object merge                `opname("..")`
+Move pieces you want to instance to origen with                centroid(0, D_X              YZ               )
+Sas orient fix, tower:
+vector p_no_y = set(@P.x,0,@P.z);
+vector t = normalize(p_no_y);
+v@N = cross(\0,-1,0
+v@up = set(0,1,0);
+scale fix:
+matrix m = pri      mintrinsic(0, "packedfulltransform", @ptnum);
+v@scale = cracktransform(0, 0, 2, \0,0,0
+instance node path:
+s@instancepath = "op:" + "/obj/Light_House/transform16";
+Rigids 1.v2
+Ctrl b = full screen
+Ctrl * to see spaces in word
+FRACTURE GEO
+Enter geo, assemble node to pack            (turn on pack, turn off name, Voronoi makes name)
+Vdb from polygon (fog not distance) or iso offset
+Scatter
+Voronoi fracture
+CREATE CONSTRAINTS
+After assemble add add node, delete geo
+Connect adjacent pieces
+Max connections search radius
+Create attribute
+Class prim
+Name = constraint_name
+Type = string
+String = Glue
+Add in dop second input
+CREATE SIM
+Dop network
+rbd packed object, source = first context geo
+constrain      t network
+glue constraint (break at hard limit)
+-1 = never break
+rigid body solver
+gravity
+merge             mutual
+groundplane
+RBD FRACTURE NODE
+Edge detail
+Add fractures
+Fracture ratio = 1 = all 0 = fracture nothing
+Enable chipping to make small corner pieces
+Rbd exploded view
+Rbd configure
+Rbd pack/unpack
+To transform
+Or copy t points
+Att random to randomize normal inside sphere
+At unpack, force unique name att
+Rbd Bullet Solver
+HOUDINI CODE:               remove not red points:
+if (@Cd.r < chf("threshold")) removepoint(0, @ptnum);
+too many points=other color:
+if(npoints(0) > chf("threshold2")) @Cd.r = 0;
+random geo to random point:
+for each, connect second ctp input
+switch
+connect first ctp input to switch
+select input:
+point(-1,0,"index",0)
+add spare input
+../foreach_begin1
+attribute adjust integer node
+att name = name
+operation: set initial
+pat type: random
+max value = number of geos
+attribute create, name
+value 0 1 2 3...
+random rotation:
+v@N = \0,-1,1
+float rand = @ptnum;
+float rand_      rot = rand(@ptnum) * 20.0;
+vector axis = \1, 1, 1
+matrix3 rot = ident();
+rotate(rot, rand_rot, axis);
+@N *= rot;
+attribute randomize node
+name: orient
+distribution = inside sphere
+dimensions = 4
+random pscale:
+attribute randomize node
+name: pscale
+pscale based of resample:
+resample
+curveu aan
+point vop
+bind curveu
+rampparameter spline ramp
+bind export pscale
+adjust ramp
+create null script houdini:
+# Get selected nodes
+nodes = hou.selectedNodes()
+# Start undo group
+with hou.undos.group("Make OUT null"):
+# Check that at least one node selected
+if len(nodes) > 0:
+# Make new node
+for n in nodes:
+oldPos = n.position()
+parent = n.parent()
+name = "OUT"
+i = 1
+# Check if the name "OUT" already exists, if so, add a number to make it       unique
+while parent.node(name):
+name = "OUT" + str(i)
+i += 1
+newNode = parent.createNode("null")
+newNode.setPosition(hou.Vector2([oldPos[0], oldPos[1]-1]))
+newNode.setInput(0, n, 0)
+newNode.setName(name)
+create transform script houdini:
+# Get selected nodes
+nodes = hou.selectedNodes()
+# Start undo group
+with hou.undos.group("Make Transform"):
+# Check that at least one node selected
+if len(nodes) > 0:
+# Make new node
+for n in nodes:
+oldPos = n.position()
+parent = n.parent()
+name = "Transform"
+i = 1
+# Check if the name "Transform" already exists, if so, add a number to make it unique
+while parent.node(name):
+name = "Transform" + str(i)
+i += 1
+newNode = parent.createNode("xform")
+newNode.se      tPosition(hou.Vector2([oldPos[0], oldPos[1]-1]))
+newNode.setInput(0, n, 0)
+newNode.setName(name)
+get bbox:
+bbox("../", D_YMAX)
+assign random color from ramp:
+color node
+att = seed
+attwrangle
+@seed = rand(@ptnum);
+get max point number:
+attwrangle
+@id = @ptnum;
+att promote
+orig name: id
+class = point
+new class = detail
+promotion method = maximum
+change new name: maxid
+create coll geo from animated file:
+merge
+unpack
+timeshift, delete channels
+vdbfrompolygons
+convertvdb to polygons
+clip
+remesh
+point deform
+input 1: remesh
+input 2: timeshift
+input 3: unpack
+out
+get color info:
+attribute transfer
+attribute from map
+pin vellum hairs based on resample curveu:
+if(@curveu == 0) i@group_pin = 1;
+Aaflownoise static noise on line
+Pscale/curveu map to ramp par
+Add mountain anim to points for jitter
+Shift click       keyframed par to see anim window
+Alt click = set keyframe
+Middle drag = move keyframe
+To spread lines:
+Pointvop
+Normalize p
+Add 1 to y consant
+Mix node
+Ligchtning geo = poly wire 4 subs color higher than 1
+Add noise to pscale:
+Turbulent noise
+Fit range
+Vis in Cd
+Bind export
+Use noise to fade lightning away:
+Bind to pscale
+Remove pscale 0 points:
+if (@pscale == 0)
+removepoint(0, @ptnum);
+N      umber       of branche      s expression in for each loop for id
+fit01(rand(point(-1, 0, "id", 0)),ch("branch_min"),ch("branch_max"))
+2              .v2
+Pack sim pieces cube = floor = pack
+Wrangle for one sim piece:              s@part_name = chs("part_name");
+Make goups out of attributes              and assign part type              :
+s@part_type = split(s@part_name, "_")[0];
+if (s@part_name == "concrete_bricks")\
+i@group_concrete_bricks = 1;
+Make subnetwork for fractures
+Make geo (concrete bricks)
+Object merge                `opname("..")`
+Move pieces you want to instance to origen with                centroid(0, D_X              YZ               )
+Sas orient fix, tower:
+vector p_no_y = set(@P.x,0,@P.z);
+vector t = normalize(p_no_y);
+v@N = cross(\0,-1,0
+v@up = set(0,1,0);
+scale fix:
+matrix m = pri      mintrinsic(0, "packedfulltransform", @ptnum);
+v@scale = cracktransform(0, 0, 2, \0,0,0
+instance node path:
+s@instancepath = "op:" + "/obj/Light_House/transform16";

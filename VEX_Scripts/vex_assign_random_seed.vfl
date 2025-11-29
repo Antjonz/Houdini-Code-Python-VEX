@@ -1,0 +1,5 @@
+// Assign Random Seed
+// Creates a seed attribute with random values based on point number
+// Used with color ramps or other randomization tools
+
+@seed = rand(@ptnum);
